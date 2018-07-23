@@ -25,12 +25,23 @@ loop do
   puts
 end
 
+puts "\n\n"
+puts "#{'Product'.ljust(15, ' ')} - #{'Number'.ljust(10, ' ')} - #{'Price'.ljust(10, ' ')} - #{'Product Sum'.ljust(12, ' ')}"
+puts '-' * 56
+
 sum = 0
-products_h.each_value do |product|
+products_h.each do |product_name, product|
   product.each do |number, price|
-    sum += number * price
+    product_sum = number * price
+    a = [] << "#{product_name.ljust(15, ' ')}" \
+      << "#{number.to_s.ljust(10, ' ')}" \
+      << "#{price.to_s.ljust(10, ' ')}" \
+      << "#{product_sum.to_s.ljust(12, ' ')}"
+
+    puts a.join(' - ')
+    sum += product_sum
   end
 end
-
+puts
 puts "Total: #{sum}."
 

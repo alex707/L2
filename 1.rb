@@ -11,7 +11,7 @@
   'october'   => 31,
   'november'  => 30,
   'december'  => 31
-}.each do |m|
-  puts m.first if m.last == 30
+}.each do |month, days|
+  puts month if days == 30
 end
 
