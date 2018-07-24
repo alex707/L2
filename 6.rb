@@ -9,13 +9,14 @@ loop do
   if !products_h.has_key?(name)
 
     print 'Enter the number of product instances: '
-    number = gets.chomp.to_i
+    count = gets.chomp.to_i
 
     print 'Enter cost the price of one: '
     price = gets.chomp.to_f
 
     products_h[name] = {
-      number => price
+      :count => count,
+      :price => price
     }
 
   else
@@ -31,17 +32,16 @@ puts '-' * 56
 
 sum = 0
 products_h.each do |product_name, product|
-  product.each do |number, price|
-    product_sum = number * price
-    a = [] << "#{product_name.ljust(15, ' ')}" \
-      << "#{number.to_s.ljust(10, ' ')}" \
-      << "#{price.to_s.ljust(10, ' ')}" \
-      << "#{product_sum.to_s.ljust(12, ' ')}"
+  product_sum = product[:count] * product[:price]
+  a = [] << "#{product_name.ljust(15, ' ')}" \
+    << "#{product[:count].to_s.ljust(10, ' ')}" \
+    << "#{product[:price].to_s.ljust(10, ' ')}" \
+    << "#{product_sum.to_s.ljust(12, ' ')}"
 
-    puts a.join(' - ')
-    sum += product_sum
-  end
+  puts a.join(' - ')
+  sum += product_sum
 end
+
 puts
 puts "Total: #{sum}."
 
